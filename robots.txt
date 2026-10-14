@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://dwolfhub.github.io/masters-gnomes/sitemap.xml
