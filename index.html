@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Masters Gnome Database</title>
+<meta name="description" content="A reference catalog of the gnomes sold at the Masters, 2016–2026.">
+<style>
+:root{--bg:#f6f3e8;--card:#fffdf5;--ink:#1d2a22;--muted:#5d6b62;--green:#0b5d3b;--green2:#d9e8dc;--line:#d8d3be;--gold:#b8892b;
+--ok:#1f7a4d;--warn:#a86a00;--bad:#b3362b;--info:#486a8f}
+@media (prefers-color-scheme:dark){:root{--bg:#121a15;--card:#1a251e;--ink:#ece8d8;--muted:#a3b0a6;--green:#5fbf8a;--green2:#24382b;--line:#2f4036;--gold:#d9ad4f;--ok:#5fbf8a;--warn:#e0a53a;--bad:#e06a5f;--info:#8fb2d8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}
+h1,h2,h3{font-family:Georgia,'Times New Roman',serif;line-height:1.2;margin:0}
+a{color:var(--green)}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+header.hero{background:var(--green);color:#f6f3e8;padding:48px 0 32px}
+@media (prefers-color-scheme:dark){header.hero{background:#0b3a26}}
+.hero h1{font-size:clamp(2rem,6vw,3.2rem)}
+.hero p{max-width:640px;opacity:.92}
+.stats{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+.stat{background:rgba(255,255,255,.12);border-radius:10px;padding:10px 16px}
+.stat b{display:block;font-size:1.6rem;font-family:Georgia,serif}
+nav{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--line);z-index:5}
+nav .wrap{display:flex;gap:4px;overflow-x:auto}
+nav a{padding:12px 14px;text-decoration:none;color:var(--ink);white-space:nowrap;font-weight:600;font-size:.95rem}
+nav a:hover{color:var(--green)}
+section{padding:36px 0}
+section>.wrap>h2{font-size:1.8rem;margin-bottom:6px}
+.sub{color:var(--muted);margin:0 0 20px}
+.controls{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}
+input,select{font:inherit;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)}
+input[type=search]{flex:1;min-width:200px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;text-align:left;cursor:pointer;font:inherit;color:inherit;display:flex;flex-direction:column;gap:6px}
+.card:hover,.card:focus-visible{border-color:var(--green);outline:none;box-shadow:0 0 0 2px var(--green2)}
+.card .yr{font:700 2rem/1 Georgia,serif;color:var(--green)}
+.card .who{font-weight:600}
+.card .out{color:var(--muted);font-size:.9rem;flex:1}
+.row{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.pill{font-size:.75rem;font-weight:600;padding:2px 9px;border-radius:99px;border:1px solid currentColor}
+.pill.Sourced{color:var(--ok)}.pill.Conflicting{color:var(--bad)}.pill.Partly{color:var(--warn)}.pill.Single{color:var(--info)}.pill.Unknown{color:var(--muted)}
+.tag{font-size:.75rem;background:var(--green2);color:var(--green);padding:2px 9px;border-radius:99px;font-weight:600}
+.price{font-weight:600}
+.timeline{border-left:3px solid var(--green2);margin-left:8px;padding-left:20px}
+.ev{position:relative;padding:0 0 22px}
+.ev:before{content:"";position:absolute;left:-29px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--green);border:3px solid var(--bg)}
+.ev.none:before{background:var(--line)}
+.ev h3{font-size:1.2rem}
+.ev .meta{color:var(--muted);font-size:.88rem}
+.notable{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:8px;padding:12px 16px;margin-bottom:10px}
+.notable b{font-family:Georgia,serif;color:var(--gold)}
+.q{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:10px}
+.q h3{font-size:1.05rem;margin-bottom:4px}
+.q p{margin:4px 0}
+.src{display:inline-block;font-size:.72rem;font-weight:700;background:var(--green2);color:var(--green);padding:1px 7px;border-radius:6px;text-decoration:none;margin-right:3px}
+ol.sources{padding-left:0;list-style:none}
+ol.sources li{padding:8px 0;border-bottom:1px solid var(--line)}
+ol.sources .id{font-weight:700;color:var(--green);display:inline-block;width:3em}
+dialog{border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);max-width:680px;width:calc(100% - 32px);padding:0}
+dialog::backdrop{background:rgba(0,0,0,.55)}
+.dlg{padding:22px}
+.dlg h2{font-size:1.7rem}
+.dlg dl{display:grid;grid-template-columns:130px 1fr;gap:8px 14px;margin:16px 0}
+.dlg dt{color:var(--muted);font-size:.88rem}.dlg dd{margin:0}
+.close{float:right;font-size:1.4rem;background:none;border:0;color:var(--muted);cursor:pointer}
+.conf{background:color-mix(in srgb,var(--bad) 10%,transparent);border-radius:8px;padding:10px 12px;font-size:.92rem}
+.photos li{margin-bottom:6px;font-size:.9rem}
+footer{padding:30px 0 50px;color:var(--muted);font-size:.88rem;border-top:1px solid var(--line)}
+@media(max-width:520px){.dlg dl{grid-template-columns:1fr}.dlg dt{margin-top:6px}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+  <h1>Masters Gnome Database</h1>
+  <p>A reference catalog of the gnomes sold at the Masters, built from published coverage. Every fact carries source IDs that link to its citation. First draft, drafted October 14, 2026.</p>
+  <div class="stats" id="stats"></div>
+</div></header>
+<nav><div class="wrap">
+  <a href="#gnomes">Gnomes</a><a href="#years">By year</a><a href="#history">History</a><a href="#questions">Open questions</a><a href="#sources">Sources</a>
+</div></nav>
+
+<section id="gnomes"><div class="wrap">
+  <h2>The gnomes</h2>
+  <p class="sub">One entry per product. Click a card for full details.</p>
+  <div class="controls">
+    <input type="search" id="q" placeholder="Search champion, outfit, year…" aria-label="Search gnomes">
+    <select id="type" aria-label="Type"><option value="">All types</option></select>
+    <select id="evid" aria-label="Evidence"><option value="">All evidence levels</option></select>
+  </div>
+  <div class="grid" id="grid"></div>
+  <p id="empty" class="sub" hidden>No gnomes match.</p>
+</div></section>
+
+<section id="years" style="background:color-mix(in srgb,var(--green2) 35%,transparent)"><div class="wrap">
+  <h2>Year by year</h2>
+  <p class="sub">Each Masters, its champion, and what the gnome was doing.</p>
+  <div class="timeline" id="timeline"></div>
+</div></section>
+
+<section id="history"><div class="wrap">
+  <h2>History &amp; quirks</h2>
+  <p class="sub">Firsts and oddities.</p>
+  <div id="notables"></div>
+</div></section>
+
+<section id="questions" style="background:color-mix(in srgb,var(--green2) 35%,transparent)"><div class="wrap">
+  <h2>Open questions</h2>
+  <p class="sub">Where sources conflict or the record has gaps.</p>
+  <div id="qs"></div>
+</div></section>
+
+<section id="sources"><div class="wrap">
+  <h2>Sources</h2>
+  <p class="sub">Several articles repeat each other; claims backed by one outlet are marked “Single source”.</p>
+  <ol class="sources" id="srcs"></ol>
+</div></section>
+
+<footer><div class="wrap">Reference photos are not hosted here; the gnome detail view links to the original pages with their credits. Resale prices are deliberately excluded. This is an unofficial fan reference.</div></footer>
+
+<dialog id="dlg"></dialog>
+<script src="data.js"></script>
+<script>
+const D=window.GNOME_DATA, $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const srcById=Object.fromEntries(D.sources.map(s=>[s.id,s]));
+const evClass=e=>e.split(' ')[0];
+const money=p=>p?'$'+Number(p).toLocaleString('en-US',{minimumFractionDigits:Number(p)%1?2:0}):'';
+// link S01-style IDs, in a list or inside prose
+const srcLinks=ids=>ids.split(/[,\s]+/).filter(Boolean).map(i=>srcById[i]?`<a class="src" href="#src-${i}" title="${esc(srcById[i].outlet)}">${i}</a>`:esc(i)).join('');
+const prose=t=>esc(t).replace(/\b(S\d{2})\b/g,(m,i)=>srcById[i]?`<a class="src" href="#src-${i}">${i}</a>`:m);
+
+// stats
+const g=D.gnomes;
+$('#stats').innerHTML=[[g.length,'products catalogued'],[D.editions.filter(e=>e.sold==='Yes').length,'years with a gnome'],[D.photos.length,'reference photo links'],[D.sources.length,'sources']]
+  .map(([n,l])=>`<div class="stat"><b>${n}</b>${l}</div>`).join('');
+
+// filters
+[...new Set(g.map(x=>x.type))].forEach(t=>$('#type').append(new Option(t,t)));
+[...new Set(g.map(x=>x.evidence))].forEach(t=>$('#evid').append(new Option(t,t)));
+
+function renderGrid(){
+  const q=$('#q').value.toLowerCase(),t=$('#type').value,e=$('#evid').value;
+  const list=g.filter(x=>(!t||x.type===t)&&(!e||x.evidence===e)&&(!q||[x.year,x.champion,x.outfit,x.facts,x.type].join(' ').toLowerCase().includes(q)));
+  $('#grid').innerHTML=list.map(x=>`<button class="card" data-id="${x.id}">
+    <div class="yr">${x.year}</div>
+    <div class="who">${esc(x.champion)}</div>
+    <div class="row"><span class="tag">${esc(x.type)}</span><span class="pill ${evClass(x.evidence)}">${esc(x.evidence)}</span></div>
+    <div class="out">${esc(x.outfit||'Outfit not documented.')}</div>
+    <div class="price">${x.price?money(x.price):'<span style="color:var(--muted);font-weight:400">Price not found</span>'}</div></button>`).join('');
+  $('#empty').hidden=list.length>0;
+}
+['#q','#type','#evid'].forEach(s=>$(s).addEventListener('input',renderGrid));
+renderGrid();
+
+// detail dialog
+const dlg=$('#dlg');
+$('#grid').addEventListener('click',ev=>{
+  const c=ev.target.closest('.card'); if(!c) return; open(c.dataset.id);
+});
+function open(id){
+  const x=g.find(v=>v.id===id), ph=D.photos.filter(p=>p.gnome===id);
+  const row=(k,v)=>v?`<dt>${k}</dt><dd>${v}</dd>`:'';
+  dlg.innerHTML=`<div class="dlg"><button class="close" aria-label="Close" onclick="dlg.close()">×</button>
+    <h2>${x.year} ${esc(x.type)} gnome</h2>
+    <div class="row" style="margin-top:6px"><span class="tag">${esc(x.champion)}</span><span class="pill ${evClass(x.evidence)}">${esc(x.evidence)}</span></div>
+    <dl>${row('Outfit',prose(x.outfit))}${row('Notable facts',prose(x.facts))}${row('Height',prose(x.height))}${row('Retail price',money(x.price))}${row('Where sold',prose(x.where))}${row('Quantity / limits',prose(x.quantity))}${row('Sources',srcLinks(x.sources))}</dl>
+    ${x.conflicts?`<div class="conf"><b>Conflicts / open questions:</b> ${prose(x.conflicts)}</div>`:''}
+    <h3 style="margin-top:18px;font-size:1.05rem">Reference photos (${ph.length})</h3>
+    ${ph.length?`<ul class="photos">${ph.map(p=>`<li><a href="${esc(p.img)}" target="_blank" rel="noopener noreferrer">${esc(p.role)}</a> — ${esc(p.shows)} <span style="color:var(--muted)">(${esc(p.outlet)}; ${esc(p.credit)}) · <a href="${esc(p.page)}" target="_blank" rel="noopener noreferrer">page</a></span></li>`).join('')}</ul>
+    <p class="sub" style="font-size:.82rem">Linked, not hosted. Images belong to their owners.</p>`:'<p class="sub">No reference photos found.</p>'}
+  </div>`;
+  dlg.showModal();
+}
+dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
+
+// timeline
+$('#timeline').innerHTML=D.editions.map(e=>{
+  const yes=e.sold==='Yes', prods=g.filter(x=>x.year===e.year);
+  return `<div class="ev ${yes?'':'none'}"><h3>${e.year} · ${esc(e.edition)} Masters</h3>
+  <div class="meta">${esc(e.champion)} · ${e.score} (${e.toPar})${e.playoff==='Yes'?' · won in a playoff':''}</div>
+  <p style="margin:4px 0">${prose(e.context)}</p>
+  <div class="row">${yes?prods.map(p=>`<a href="#gnomes" class="tag" style="text-decoration:none" data-open="${p.id}">${esc(p.type)}</a>`).join(''):'<span class="pill Unknown">No gnome</span>'}</div></div>`;
+}).join('');
+$('#timeline').addEventListener('click',e=>{const a=e.target.closest('[data-open]');if(a)setTimeout(()=>open(a.dataset.open),0)});
+
+$('#notables').innerHTML=D.notables.map(n=>`<div class="notable"><b>${n.year}</b> · ${esc(n.champion)}<br>${prose(n.fact)} <span class="pill ${evClass(n.evidence)}">${esc(n.evidence)}</span></div>`).join('');
+$('#qs').innerHTML=D.questions.map(q=>`<div class="q"><h3>${q.n}. ${esc(q.topic)}</h3><p>${prose(q.says)}</p><p style="color:var(--muted)"><b>To resolve:</b> ${esc(q.resolve)}</p></div>`).join('');
+$('#srcs').innerHTML=D.sources.map(s=>`<li id="src-${s.id}"><span class="id">${s.id}</span><a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.title)}</a> <span style="color:var(--muted)">— ${esc(s.outlet)}, ${esc(s.date)}</span></li>`).join('');
+</script>
+</body>
+</html>
